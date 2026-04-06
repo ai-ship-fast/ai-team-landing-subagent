@@ -1,154 +1,336 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI·TEAM | Внедрение ИИ-агентов</title>
+    <title>AI·TEAM — Внедряем ИИ-агентов в бизнес</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        neon: '#ef4444',
+                        neonDark: '#b91c1c',
+                        bg: '#0a0a0a',
+                        surface: '#111111',
+                        surfaceHover: '#1a1a1a',
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        brand: {
-                            red: '#ef4444',
-                            dark: '#b91c1c',
-                            bg: '#0a0a0a',
-                            card: '#111',
-                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        .neon-border { border: 1px solid #333; transition: all 0.3s ease; }
-        .neon-border:hover { border-color: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
-        .glass { background: rgba(17, 17, 17, 0.8); backdrop-filter: blur(10px); }
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; overflow-x: hidden; }
+        .neon-glow { text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.4), 0 0 40px rgba(239, 68, 68, 0.2); }
+        .neon-box { box-shadow: 0 0 15px rgba(239, 68, 68, 0.2), 0 4px 30px rgba(0,0,0,0.5); }
+        .neon-border { border: 1px solid rgba(239, 68, 68, 0.25); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 10px 40px rgba(0,0,0,0.6); border-color: rgba(239, 68, 68, 0.6); }
+        .grad-text { background: linear-gradient(135deg, #ef4444, #f87171, #b91c1c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .pulse-btn { animation: pulseNeon 2.5s ease-in-out infinite; }
+        @keyframes pulseNeon { 0%, 100% { box-shadow: 0 0 8px rgba(239,68,68,0.3); } 50% { box-shadow: 0 0 20px rgba(239,68,68,0.6), 0 0 40px rgba(239,68,68,0.2); } }
+        .fade-in { animation: fadeInUp 0.7s ease forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .bg-hero { background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.95)), url('images/hero-bg.jpg'); background-size: cover; background-position: center; }
+        .bg-pattern { background-image: url('images/bg-texture.jpg'); background-repeat: repeat; background-size: auto; }
+        .avatar-ring { position: relative; }
+        .avatar-ring::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, #ef4444, #b91c1c, transparent); z-index: -1; animation: rotate 4s linear infinite; }
+        @keyframes rotate { to { transform: rotate(360deg); } }
+        ::selection { background: rgba(239,68,68,0.4); color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #b91c1c; border-radius: 4px; }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; }
     </style>
 </head>
-<body class="bg-brand-bg text-gray-100 font-sans selection:bg-brand-red selection:text-white">
+<body class="text-gray-300 bg-pattern">
 
-    <nav class="fixed w-full z-50 glass border-b border-gray-800">
+    <!-- НАВИГАЦИЯ -->
+    <nav class="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-xl border-b border-gray-800/50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <span class="font-mono font-bold text-xl tracking-tighter">AI·TEAM</span>
-            <div class="space-x-8 text-sm font-medium text-gray-400">
-                <a href="#services" class="hover:text-brand-red transition">Услуги</a>
-                <a href="#cases" class="hover:text-brand-red transition">Кейсы</a>
-                <a href="#team" class="hover:text-brand-red transition">Команда</a>
+            <a href="#" class="font-mono font-bold text-xl text-white flex items-center gap-1">
+                AI<span class="text-red-500">·</span>TEAM
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#services" class="hover:text-white hover:neon-glow transition-all">Услуги</a>
+                <a href="#cases" class="hover:text-white hover:neon-glow transition-all">Кейсы</a>
+                <a href="#team" class="hover:text-white hover:neon-glow transition-all">Команда</a>
+                <a href="#contact" class="hover:text-white hover:neon-glow transition-all">Контакты</a>
             </div>
+            <a href="https://t.me/able_to_piano" class="md:hidden text-red-400 text-sm font-mono">Написать →</a>
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
-        <h1 class="text-6xl md:text-8xl font-extrabold text-center mb-6 leading-tight">Внедряем ИИ-агентов<br><span class="text-brand-red">в ваш бизнес</span></h1>
-        <p class="text-xl text-gray-400 mb-10 max-w-2xl text-center">Команда из двух AI-разработчиков. Быстрая разработка без переплат за агентство и лишних менеджеров.</p>
-        <div class="flex gap-4">
-            <a href="https://t.me/able_to_piano" class="bg-brand-red hover:bg-brand-dark px-8 py-4 rounded-full font-bold transition-transform hover:scale-105">Обсудить проект</a>
-            <a href="#cases" class="border border-gray-700 hover:border-brand-red px-8 py-4 rounded-full font-bold transition">Смотреть кейсы</a>
-        </div>
-    </section>
-
-    <section id="services" class="py-20 px-6 max-w-6xl mx-auto">
-        <h2 class="text-4xl font-bold mb-12">Услуги</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">🤖 AI-чатботы</h3>
-                <p class="text-gray-400 text-sm">Telegram-боты с LLM, памятью и инструментами</p>
+    <!-- HERO -->
+    <section class="bg-hero min-h-screen flex items-center justify-center px-6 pt-20 relative">
+        <div class="max-w-4xl text-center fade-in">
+            <div class="inline-block mb-6 px-5 py-2 rounded-full border border-red-500/30 bg-red-500/5 text-red-400 text-xs font-mono tracking-[0.2em] uppercase">
+                AI-first разработка
             </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">⚡ Автоматизация</h3>
-                <p class="text-gray-400 text-sm">Пайплайны, парсинг, анализ 24/7</p>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-6 leading-[1.1]">
+                Внедряем <span class="grad-text neon-glow">ИИ-агентов</span><br>в ваш бизнес
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Команда из двух AI-разработчиков. Автоматизация, чат-боты, RAG-системы, пайплайны — быстро и без переплат за агентство
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="https://t.me/able_to_piano" target="_blank" class="px-10 py-5 bg-red-600 hover:bg-red-500 text-white font-bold text-lg rounded-xl transition-all neon-box pulse-btn">
+                    Обсудить проект →
+                </a>
+                <a href="#cases" class="px-10 py-5 border border-gray-700 hover:border-red-500 text-gray-300 hover:text-white rounded-xl transition-all font-medium">
+                    Смотреть кейсы
+                </a>
             </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">📚 RAG-системы</h3>
-                <p class="text-gray-400 text-sm">Поиск по документам и базам знаний</p>
-            </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">🎨 Генерация контента</h3>
-                <p class="text-gray-400 text-sm">ComfyUI, изображения, видео, тексты</p>
-            </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">📊 Анализ данных</h3>
-                <p class="text-gray-400 text-sm">Транскрибация звонков, отчёты для РОП</p>
-            </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="text-xl font-bold mb-3">🌐 Лендинги и веб</h3>
-                <p class="text-gray-400 text-sm">Быстрые SPA, админки, deploy за день</p>
+            <!-- Декоративный индикатор скролла -->
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600">
+                <span class="text-xs font-mono">scroll</span>
+                <div class="w-[1px] h-8 bg-gradient-to-b from-red-500/50 to-transparent"></div>
             </div>
         </div>
     </section>
 
-    <section id="cases" class="py-20 px-6 max-w-6xl mx-auto bg-neutral-900/50">
-        <h2 class="text-4xl font-bold mb-12">Кейсы</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="font-bold mb-2">AI-анализатор sales-встреч</h3>
-                <p class="text-sm text-gray-400 mb-4 font-mono">Telethon · ffmpeg · Groq Whisper · OpenRouter</p>
+    <!-- УСЛУГИ -->
+    <section id="services" class="py-32 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <div class="text-red-400 text-xs font-mono tracking-[0.2em] uppercase mb-3">Что мы делаем</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white">Наши <span class="grad-text">услуги</span></h2>
             </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="font-bold mb-2">RAG-система для знаний</h3>
-                <p class="text-sm text-gray-400 mb-4 font-mono">FastAPI · ChromaDB · Embeddings</p>
-            </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="font-bold mb-2">Мониторинг вакансий</h3>
-                <p class="text-sm text-gray-400 mb-4 font-mono">Python · LLM · systemd timers</p>
-            </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <h3 class="font-bold mb-2">Telegram-бот с памятью</h3>
-                <p class="text-sm text-gray-400 mb-4 font-mono">OpenClaw · Memory System · Tools API</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-1">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-chatbot.jpg" alt="AI-чатботы" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI-чатботы</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Telegram-боты с LLM, памятью и инструментами. Агент, который понимает контекст и выполняет задачи</p>
+                </div>
+                <!-- 2 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-2">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-automation.jpg" alt="Автоматизация" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Автоматизация</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Пайплайны от сбора данных до интеграций. Мониторинг, парсинг, анализ 24/7 без участия человека</p>
+                </div>
+                <!-- 3 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-3">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-rag.jpg" alt="RAG-системы" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">RAG-системы</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Поиск по документам, базам знаний, регламентам. Загрузите информацию — AI будет отвечать как специалист</p>
+                </div>
+                <!-- 4 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-1">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-content.jpg" alt="Генерация контента" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Генерация контента</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Автоматическая генерация изображений, текстов, видео через ComfyUI и AI-пайплайны</p>
+                </div>
+                <!-- 5 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-2">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-analytics.jpg" alt="Анализ" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Анализ данных</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Транскрибация встреч, анализ звонков, отчёты для РОП. AI разбирает каждое взаимодействие</p>
+                </div>
+                <!-- 6 -->
+                <div class="bg-surface p-8 rounded-2xl neon-border card-hover fade-in delay-3">
+                    <div class="w-16 h-16 rounded-xl overflow-hidden mb-6 border border-red-500/20">
+                        <img src="images/icon-web.jpg" alt="Веб" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Лендинги и веб</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Быстрые лендинги, SPA, админки. Современный стек, AI-элементы, deploy за день</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-12">Команда</h2>
-        <div class="grid md:grid-cols-2 gap-8 mb-8">
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <div class="text-4xl mb-4">🛠️</div>
-                <h3 class="text-xl font-bold mb-2">Валерий</h3>
-                <p class="text-xs text-brand-red font-mono mb-4">BACKEND · AI-АГЕНТЫ · АВТОМАТИЗАЦИЯ</p>
-                <p class="text-sm text-gray-400">Python, FastAPI, LLM APIs, AI Agents, RAG, Telethon, Docker</p>
+    <!-- КЕЙСЫ -->
+    <section id="cases" class="py-32 px-6 bg-surface/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <div class="text-red-400 text-xs font-mono tracking-[0.2em] uppercase mb-3">Реальные проекты</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white">Наши <span class="grad-text">кейсы</span></h2>
             </div>
-            <div class="p-8 bg-brand-card neon-border rounded-2xl">
-                <div class="text-4xl mb-4">🎨</div>
-                <h3 class="text-xl font-bold mb-2">Илья</h3>
-                <p class="text-xs text-brand-red font-mono mb-4">DESIGN · GEN-AI · ЛЕНДИНГИ</p>
-                <p class="text-sm text-gray-400">ComfyUI, RunPod, Генерация, Дизайн, Лендинги, LLM, AI Tools</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Кейс 1 -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover fade-in delay-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="text-xs font-mono text-red-400/80 tracking-wider">TELETHON · LLM · GROQ</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI-анализатор sales-встреч</h3>
+                    <div class="space-y-3 text-sm">
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">ЗАДАЧА</span><span class="text-gray-300">РОП тратит 2-3 часа в день на разбор записей встреч</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">РЕШЕНИЕ</span><span class="text-gray-300">Пайплайн: видео из группы → Groq Whisper → LLM-анализ → готовый отчёт за 2 минуты</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">СТЕК</span><span class="text-gray-300 font-mono text-xs">Telethon · ffmpeg · Groq Whisper · OpenRouter · Local Bot API</span></div>
+                    </div>
+                </div>
+                <!-- Кейс 2 -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover fade-in delay-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="text-xs font-mono text-red-400/80 tracking-wider">RAG · VECTOR SEARCH</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">RAG-система для базы знаний</h3>
+                    <div class="space-y-3 text-sm">
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">ЗАДАЧА</span><span class="text-gray-300">Документы разбросаны, поиск занимает часы</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">РЕШЕНИЕ</span><span class="text-gray-300">Векторный поиск с точными ответами на вопросы по базе знаний компании</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">СТЕК</span><span class="text-gray-300 font-mono text-xs">FastAPI · ChromaDB · Embeddings</span></div>
+                    </div>
+                </div>
+                <!-- Кейс 3 -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover fade-in delay-3">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="text-xs font-mono text-red-400/80 tracking-wider">MONITORING · AUTOMATION</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Мониторинг вакансий и заказов</h3>
+                    <div class="space-y-3 text-sm">
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">ЗАДАЧА</span><span class="text-gray-300">Ручной поиск вакансий на 10+ площадках</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">РЕШЕНИЕ</span><span class="text-gray-300">Авто-сбор HH/Kwork → AI-фильтрация → уведомления в Telegram</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">СТЕК</span><span class="text-gray-300 font-mono text-xs">Python · LLM · Telegram Bot API · systemd timers</span></div>
+                    </div>
+                </div>
+                <!-- Кейс 4 -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover fade-in delay-4">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="text-xs font-mono text-red-400/80 tracking-wider">AI AGENT · OPENCLAW</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Telegram-бот с памятью и инструментами</h3>
+                    <div class="space-y-3 text-sm">
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">ЗАДАЧА</span><span class="text-gray-300">Боты забывают контекст, не умеют работать с файлами и API</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">РЕШЕНИЕ</span><span class="text-gray-300">Агент с памятью, доступом к календарю, почте, файлам и внешним сервисам</span></div>
+                        <div><span class="text-gray-500 block text-xs font-mono mb-1">СТЕК</span><span class="text-gray-300 font-mono text-xs">OpenClaw · LLM · Memory System · Tools API</span></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="inline-block p-4 border border-brand-red/30 rounded-full font-mono text-sm">
-            Expertise: LLM API, Промпт-инжиниринг, Агентные системы, Function Calling
         </div>
     </section>
 
-    <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-        <div class="text-center">
-            <div class="text-brand-red text-3xl mb-4">⚡</div>
-            <h4 class="font-bold mb-2">AI-first скорость</h4>
-            <p class="text-gray-400 text-sm">Делаем за 1-2 дня то, что команда делает за неделю</p>
-        </div>
-        <div class="text-center">
-            <div class="text-brand-red text-3xl mb-4">💰</div>
-            <h4 class="font-bold mb-2">Без наценки</h4>
-            <p class="text-gray-400 text-sm">Нас двое, без менеджеров и офисов</p>
-        </div>
-        <div class="text-center">
-            <div class="text-brand-red text-3xl mb-4">🧠</div>
-            <h4 class="font-bold mb-2">AI Экспертиза</h4>
-            <p class="text-gray-400 text-sm">Понимаем ограничения моделей, проектируем системы</p>
+    <!-- КОМАНДА -->
+    <section id="team" class="py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <div class="text-red-400 text-xs font-mono tracking-[0.2em] uppercase mb-3">Кто мы</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white">Наша <span class="grad-text">команда</span></h2>
+                <p class="text-gray-400 mt-4 max-w-xl mx-auto">Два AI-разработчика с разными компетенциями — закрываем полный цикл от дизайна до бэкенда</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Валерий -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover text-center fade-in delay-1">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-2 border-red-500/30 avatar-ring">
+                        <img src="images/avatar.jpg" alt="Валерий" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Валерий</h3>
+                    <div class="text-red-400 text-xs font-mono tracking-wider mb-5 mt-3">BACKEND · AI-АГЕНТЫ · АВТОМАТИЗАЦИЯ</div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">Backend-разработка, Telegram-боты, RAG-системы, пайплайны, LLM-интеграции. Строит системы, которые работают без человека.</p>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Python</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">FastAPI</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">LLM APIs</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">AI Agents</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">RAG</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Telethon</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Docker</span>
+                    </div>
+                </div>
+                <!-- Илья -->
+                <div class="bg-surface p-10 rounded-2xl neon-border card-hover text-center fade-in delay-2">
+                    <div class="w-24 h-24 rounded-full mx-auto mb-6 overflow-hidden border-2 border-red-500/30 avatar-ring">
+                        <img src="images/avatar-ilya.jpg" alt="Илья" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Илья</h3>
+                    <div class="text-red-400 text-xs font-mono tracking-wider mb-5 mt-3">DESIGN · GEN-AI · ЛЕНДИНГИ</div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">ComfyUI, генерация изображений и видео, дизайн интерфейсов, лендинги, визуальный контент. Создаёт то, что красиво работает.</p>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">ComfyUI</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">RunPod</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Генерация</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Дизайн</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">Лендинги</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">LLM</span>
+                        <span class="tag bg-red-900/20 text-red-400 border border-red-800/40">AI Tools</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Общая экспертиза -->
+            <div class="mt-14 bg-surface p-8 rounded-2xl neon-border text-center fade-in">
+                <div class="text-gray-500 text-xs font-mono tracking-[0.2em] uppercase mb-5">Общая экспертиза</div>
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <span class="tag bg-red-900/15 text-red-300 border border-red-800/30 px-5 py-2">LLM API</span>
+                    <span class="tag bg-red-900/15 text-red-300 border border-red-800/30 px-5 py-2">Промпт-инжиниринг</span>
+                    <span class="tag bg-red-900/15 text-red-300 border border-red-800/30 px-5 py-2">Агентные системы</span>
+                    <span class="tag bg-red-900/15 text-red-300 border border-red-800/30 px-5 py-2">Function Calling</span>
+                    <span class="tag bg-red-900/15 text-red-300 border border-red-800/30 px-5 py-2">OpenRouter / Groq / Anthropic</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-gray-800">
-        <h2 class="text-2xl font-bold mb-6">Есть задача? Давайте обсудим</h2>
-        <a href="https://t.me/able_to_piano" class="inline-block bg-brand-red hover:bg-brand-dark px-8 py-3 rounded-full font-bold mb-4">Написать в Telegram →</a>
-        <p class="text-gray-500 text-xs mt-8">© 2026 AI·TEAM — Валерий & Илья</p>
+    <!-- ПОЧЕМУ МЫ -->
+    <section class="py-32 px-6 bg-surface/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20 fade-in">
+                <div class="text-red-400 text-xs font-mono tracking-[0.2em] uppercase mb-3">Преимущества</div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white">Почему <span class="grad-text">мы</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center fade-in delay-1">
+                    <div class="text-red-500 text-5xl mb-6 neon-glow">⚡</div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI-first скорость</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Мы используем AI-агентов для разработки. То, что команда делает за неделю, мы делаем за 1-2 дня. Потому что инструменты другие.</p>
+                </div>
+                <div class="text-center fade-in delay-2">
+                    <div class="text-red-500 text-5xl mb-6 neon-glow">💰</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Без наценки за агентство</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Нас двое. Нет менеджеров, HR-ов и офиса. Вы платите за код и результат, а не за воздух.</p>
+                </div>
+                <div class="text-center fade-in delay-3">
+                    <div class="text-red-500 text-5xl mb-6 neon-glow">🧠</div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI-экспертиза</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Мы не просто ставим API-ключ — мы понимаем ограничения моделей, проектируем системы вокруг них.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="py-40 px-6 relative overflow-hidden">
+        <!-- Фоновый эффект -->
+        <div class="absolute inset-0 bg-hero opacity-30"></div>
+        <div class="max-w-3xl mx-auto text-center relative z-10 fade-in">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">Есть задача?<br><span class="grad-text neon-glow">Давайте обсудим</span></h2>
+            <p class="text-xl text-gray-400 mb-12">Расскажите, что хотите автоматизировать или внедрить. Оценим за 24 часа, предложим решение.</p>
+            <a href="https://t.me/able_to_piano" target="_blank" class="inline-block px-14 py-6 bg-red-600 hover:bg-red-500 text-white font-bold text-lg rounded-xl transition-all neon-box pulse-btn">
+                Написать в Telegram →
+            </a>
+            <p class="text-gray-600 text-sm mt-8 font-mono">Бесплатная консультация · Оценка · Без обязательств</p>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="border-t border-gray-800/50 py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+            <div class="mb-2 md:mb-0 font-mono">© 2026 AI·TEAM — Валерий & Илья</div>
+            <div class="font-mono text-xs tracking-wider">AI-FIRST DEVELOPMENT</div>
+        </div>
     </footer>
 
 </body>
