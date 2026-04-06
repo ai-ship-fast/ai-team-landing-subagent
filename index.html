@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI·TEAM | Внедрение ИИ-агентов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#ef4444',
+                            dark: '#b91c1c',
+                            bg: '#0a0a0a',
+                            card: '#111',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neon-border { border: 1px solid #333; transition: all 0.3s ease; }
+        .neon-border:hover { border-color: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); }
+        .glass { background: rgba(17, 17, 17, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-brand-bg text-gray-100 font-sans selection:bg-brand-red selection:text-white">
+
+    <nav class="fixed w-full z-50 glass border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="font-mono font-bold text-xl tracking-tighter">AI·TEAM</span>
+            <div class="space-x-8 text-sm font-medium text-gray-400">
+                <a href="#services" class="hover:text-brand-red transition">Услуги</a>
+                <a href="#cases" class="hover:text-brand-red transition">Кейсы</a>
+                <a href="#team" class="hover:text-brand-red transition">Команда</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
+        <h1 class="text-6xl md:text-8xl font-extrabold text-center mb-6 leading-tight">Внедряем ИИ-агентов<br><span class="text-brand-red">в ваш бизнес</span></h1>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl text-center">Команда из двух AI-разработчиков. Быстрая разработка без переплат за агентство и лишних менеджеров.</p>
+        <div class="flex gap-4">
+            <a href="https://t.me/able_to_piano" class="bg-brand-red hover:bg-brand-dark px-8 py-4 rounded-full font-bold transition-transform hover:scale-105">Обсудить проект</a>
+            <a href="#cases" class="border border-gray-700 hover:border-brand-red px-8 py-4 rounded-full font-bold transition">Смотреть кейсы</a>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-6 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12">Услуги</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">🤖 AI-чатботы</h3>
+                <p class="text-gray-400 text-sm">Telegram-боты с LLM, памятью и инструментами</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">⚡ Автоматизация</h3>
+                <p class="text-gray-400 text-sm">Пайплайны, парсинг, анализ 24/7</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">📚 RAG-системы</h3>
+                <p class="text-gray-400 text-sm">Поиск по документам и базам знаний</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">🎨 Генерация контента</h3>
+                <p class="text-gray-400 text-sm">ComfyUI, изображения, видео, тексты</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">📊 Анализ данных</h3>
+                <p class="text-gray-400 text-sm">Транскрибация звонков, отчёты для РОП</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="text-xl font-bold mb-3">🌐 Лендинги и веб</h3>
+                <p class="text-gray-400 text-sm">Быстрые SPA, админки, deploy за день</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="py-20 px-6 max-w-6xl mx-auto bg-neutral-900/50">
+        <h2 class="text-4xl font-bold mb-12">Кейсы</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="font-bold mb-2">AI-анализатор sales-встреч</h3>
+                <p class="text-sm text-gray-400 mb-4 font-mono">Telethon · ffmpeg · Groq Whisper · OpenRouter</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="font-bold mb-2">RAG-система для знаний</h3>
+                <p class="text-sm text-gray-400 mb-4 font-mono">FastAPI · ChromaDB · Embeddings</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="font-bold mb-2">Мониторинг вакансий</h3>
+                <p class="text-sm text-gray-400 mb-4 font-mono">Python · LLM · systemd timers</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <h3 class="font-bold mb-2">Telegram-бот с памятью</h3>
+                <p class="text-sm text-gray-400 mb-4 font-mono">OpenClaw · Memory System · Tools API</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 px-6 max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-12">Команда</h2>
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <div class="text-4xl mb-4">🛠️</div>
+                <h3 class="text-xl font-bold mb-2">Валерий</h3>
+                <p class="text-xs text-brand-red font-mono mb-4">BACKEND · AI-АГЕНТЫ · АВТОМАТИЗАЦИЯ</p>
+                <p class="text-sm text-gray-400">Python, FastAPI, LLM APIs, AI Agents, RAG, Telethon, Docker</p>
+            </div>
+            <div class="p-8 bg-brand-card neon-border rounded-2xl">
+                <div class="text-4xl mb-4">🎨</div>
+                <h3 class="text-xl font-bold mb-2">Илья</h3>
+                <p class="text-xs text-brand-red font-mono mb-4">DESIGN · GEN-AI · ЛЕНДИНГИ</p>
+                <p class="text-sm text-gray-400">ComfyUI, RunPod, Генерация, Дизайн, Лендинги, LLM, AI Tools</p>
+            </div>
+        </div>
+        <div class="inline-block p-4 border border-brand-red/30 rounded-full font-mono text-sm">
+            Expertise: LLM API, Промпт-инжиниринг, Агентные системы, Function Calling
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+            <div class="text-brand-red text-3xl mb-4">⚡</div>
+            <h4 class="font-bold mb-2">AI-first скорость</h4>
+            <p class="text-gray-400 text-sm">Делаем за 1-2 дня то, что команда делает за неделю</p>
+        </div>
+        <div class="text-center">
+            <div class="text-brand-red text-3xl mb-4">💰</div>
+            <h4 class="font-bold mb-2">Без наценки</h4>
+            <p class="text-gray-400 text-sm">Нас двое, без менеджеров и офисов</p>
+        </div>
+        <div class="text-center">
+            <div class="text-brand-red text-3xl mb-4">🧠</div>
+            <h4 class="font-bold mb-2">AI Экспертиза</h4>
+            <p class="text-gray-400 text-sm">Понимаем ограничения моделей, проектируем системы</p>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center border-t border-gray-800">
+        <h2 class="text-2xl font-bold mb-6">Есть задача? Давайте обсудим</h2>
+        <a href="https://t.me/able_to_piano" class="inline-block bg-brand-red hover:bg-brand-dark px-8 py-3 rounded-full font-bold mb-4">Написать в Telegram →</a>
+        <p class="text-gray-500 text-xs mt-8">© 2026 AI·TEAM — Валерий & Илья</p>
+    </footer>
+
+</body>
+</html>
